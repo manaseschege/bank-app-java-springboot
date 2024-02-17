@@ -1,13 +1,30 @@
 package com.zech.bank.controller;
 
+import com.zech.bank.model.AccountTransactions;
+import com.zech.bank.repository.AccountTransactionsRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class BalanceController {
-@GetMapping("/myBalance")
-    public  String geyBalanceDetails(){
-    return "Here are the balance details fro the db";
 
-}
+    @Autowired
+    private AccountTransactionsRepository accountTransactionsRepository;
+
+    @GetMapping("/myBalance")
+    public List<AccountTransactions> getBalanceDetails(@RequestParam int id) {
+        List<AccountTransactions> accountTransactions = accountTransactionsRepository.
+                findByCustomerIdOrderByTransactionDtDesc(id);
+        if (accountTransactions != null ) {
+            return accountTransactions;
+        }else {
+            return null;
+        }
+    }
 }
