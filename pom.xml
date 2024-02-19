@@ -8,7 +8,7 @@
 		<version>3.2.2</version>
 		<relativePath/> 
 	</parent>
-	<groupId>com.zech</groupId>
+	<groupId>com.Zech</groupId>
 	<artifactId>bank</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>bank</name>
